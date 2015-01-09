@@ -1,0 +1,24 @@
+//
+//  PersonalInfoViewController.h
+//  Balance4Good
+//
+//  Created by Hira Daud on 12/9/14.
+//  Copyright (c) 2014 Hira Daud. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PersonalInfoViewController : UIViewController
+{
+    __weak IBOutlet UITextField *tName;
+    __weak IBOutlet UITextField *tNumber;
+    __weak IBOutlet UITextField *tHeight;
+    __weak IBOutlet UITextField *tHipHeight;
+    __weak IBOutlet UITextField *tWeight;
+    __weak IBOutlet UISegmentedControl *scGender;
+    __weak IBOutlet UITextField *tAge;
+}
+
+- (IBAction)save:(UIButton *)sender;
+
+@end
