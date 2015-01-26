@@ -1,25 +1,24 @@
 //
-//  WelcomeViewController.m
+//  InstructionsViewController.m
 //  Balance4Good
 //
-//  Created by Hira Daud on 12/9/14.
-//  Copyright (c) 2014 Hira Daud. All rights reserved.
+//  Created by Hira Daud on 1/16/15.
+//  Copyright (c) 2015 Hira Daud. All rights reserved.
 //
 
-#import "WelcomeViewController.h"
+#import "InstructionsViewController.h"
 
-@interface WelcomeViewController ()
+@interface InstructionsViewController ()
 
 @end
 
-@implementation WelcomeViewController
+@implementation InstructionsViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     // Do any additional setup after loading the view.
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,4 +36,8 @@
 }
 */
 
+- (IBAction)back:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

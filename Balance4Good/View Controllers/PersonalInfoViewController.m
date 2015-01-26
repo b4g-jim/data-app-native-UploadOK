@@ -19,7 +19,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadData];
+    
+    //Required in iOS 8 to disbale the automatic scroll view insets adjustment (which was added in iOS 8)
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+
+    [self.navigationItem setHidesBackButton:YES animated:NO];
 }
+
+//this function is called when this view controller is loaded. It retreives the stored data and shows it in the corresponding fields.
 
 -(void)loadData
 {
@@ -30,6 +37,10 @@
     [tHipHeight setText:[data objectForKey:@"hipHeight"]];
     [tAge setText:[data objectForKey:@"age"]];
     [tWeight setText:[data objectForKey:@"weight"]];
+
+    // if gender is female, select segment at index 1 (which is female) and unselected the already selected one (which is male)
+    // we don't cater for male as it is already selected by default
+    
     if([[data objectForKey:@"gender"] isEqualToString:@"Female"])
         [scGender setSelectedSegmentIndex:1];
 }
@@ -49,35 +60,65 @@
 }
 */
 
+//We check if any of the field is not entered. In that case, we don't allow the user to save the data and show an alert
+//In case all the data is entered, we save the data in UserDefaults and go back to the welcome screen/view controller
 - (IBAction)save:(UIButton *)sender
 {
+    if([[[tName text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Full Name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    else if([[tNumber text] length] != 6)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Test Number should be exactly 6 Numbers" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    else if([[tHeight text] length] == 0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Height." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    else if([[tHipHeight text] length] == 0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Hip Height." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    else if([[tAge text] length] == 0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Age." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    else if([[tWeight text] length] == 0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Weight." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[tName.text,tNumber.text,tHeight.text,tHipHeight.text,tAge.text, tWeight.text,[scGender titleForSegmentAtIndex:[scGender selectedSegmentIndex]]] forKeys:@[@"name",@"number",@"height",@"hipHeight",@"age",@"weight",@"gender"]];
     [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"personalInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)cancel:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];    
+}
+
+//show a done button when keyboard appears
 -(IBAction)keyboardDidAppear
 {
-    if(self.view.frame.origin.y == 0)
-    {
-        [self.view setFrame:CGRectOffset(self.view.frame, 0, -150)];
-    }
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
 }
 
--(IBAction)keyboardDidDisappear
-{
-    if(self.view.frame.origin.y < 0)
-    {
-        [self.view setFrame:CGRectOffset(self.view.frame, 0, +150)];
-    }
-}
-
+//when done, end Editing (Hide Keyboard) and remove the done button
 -(void)done
 {
     [self.view endEditing:YES];
-    [self keyboardDidDisappear];
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 @end

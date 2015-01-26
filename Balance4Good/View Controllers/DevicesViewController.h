@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Hira Daud. All rights reserved.
 //
 
+//This file is not being used (it was used in the demo version)
+
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BLEDevice.h"

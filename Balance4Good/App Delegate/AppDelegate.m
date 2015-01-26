@@ -20,19 +20,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
- 
-    AWSStaticCredentialsProvider *credentialsProvider = [AWSStaticCredentialsProvider credentialsWithAccessKey:ACCESS_KEY secretKey:SECRET_KEY];
-    AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionEUWest1 credentialsProvider:credentialsProvider];
-    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
-
-    [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+    
+    //Please set Initial Values for the Technical Configuration Here
+    //Values for AWS ACCESS_KEY, SECRET_KEY and BUCKET_NAME needs to be set in Constants.m
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"updateRate"])
     {
-        [[NSUserDefaults standardUserDefaults] setInteger:100 forKey:@"updateRate"];
+        [[NSUserDefaults standardUserDefaults] setInteger:30 forKey:@"updateRate"];
+        [[NSUserDefaults standardUserDefaults] setInteger:30 forKey:@"total_walk_time"];
+        [[NSUserDefaults standardUserDefaults] setObject:BUCKET_NAME forKey:@"bucket_name"];
+        [[NSUserDefaults standardUserDefaults] setObject:ACCESS_KEY forKey:@"access_key"];
+
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+
+    //Initial settings for AWS
+    // If you change ACCESS_KEY in Constants.m, please do chang SECRET_KEY to its correspoding key otherwise
+    // upload won't work
     
+    AWSStaticCredentialsProvider *credentialsProvider = [AWSStaticCredentialsProvider credentialsWithAccessKey:[[NSUserDefaults standardUserDefaults] objectForKey:@"access_key"] secretKey:SECRET_KEY];
+    AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionEUWest1 credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    
+    [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+
     return YES;
 }
 

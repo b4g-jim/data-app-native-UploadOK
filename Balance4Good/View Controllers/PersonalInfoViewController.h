@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Hira Daud. All rights reserved.
 //
 
+//View Controller for Adding/Changing Personal Data of Tester
+
 #import <UIKit/UIKit.h>
 
 @interface PersonalInfoViewController : UIViewController
@@ -20,5 +22,5 @@
 }
 
 - (IBAction)save:(UIButton *)sender;
-
+- (IBAction)cancel:(id)sender;
 @end

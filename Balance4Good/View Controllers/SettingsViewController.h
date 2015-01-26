@@ -12,5 +12,9 @@
 {
     
     __weak IBOutlet UITextField *logInterval;
+    __weak IBOutlet UITextField *exerciseTime;
+    __weak IBOutlet UITextField *bucket_name;
+    __weak IBOutlet UITextField *access_key;
 }
+- (IBAction)cancel:(UIButton *)sender;
 @end

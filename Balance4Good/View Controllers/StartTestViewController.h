@@ -20,11 +20,21 @@
     __weak IBOutlet UILabel *lbltGender;
     __weak IBOutlet UILabel *lblAge;
     
-    __weak IBOutlet UISegmentedControl *scShoeType;
-    __weak IBOutlet UISegmentedControl *scFloorType;
-    __weak IBOutlet UISegmentedControl *scSensors;
     
-      BLEDevice *device;
+    __weak IBOutlet UITextField *txtShoeType;
+    __weak IBOutlet UITextField *txtFloorType;
+    __weak IBOutlet UITextField *txtSensorType;
+    
+    __weak IBOutlet UITextField *txtNote;
+    BLEDevice *device;
+    
+    __weak IBOutlet UILabel *lblSensor1_status;
+    __weak IBOutlet UILabel *lblSensor2_status;
+    
+    NSString *preferenceName;
+    __weak IBOutlet UIScrollView *scrollView;
+    
+    NSMutableArray *shoeTypes,*floorTypes,*sensors;
 }
 
 - (IBAction)startTest:(UIButton *)sender;
@@ -37,5 +47,9 @@
 
 -(NSMutableDictionary*) makeSensorTagConfiguration;
 
+- (IBAction)cancel:(UIButton *)sender;
+- (IBAction)showShowTypeDropDown:(UIButton *)sender;
+- (IBAction)showFloorTypeDropDown:(UIButton *)sender;
+- (IBAction)showSensorsDropDown:(UIButton *)sender;
 
 @end

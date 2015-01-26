@@ -30,9 +30,6 @@
     
     [self initialize];
 
-    //Start the logTimer and countUpTimer. LogTimer is used for logging values while countUp is used to show the elapsed Timed
-    //In case of logTimer, if the sensors are not giving values yet(may take a few milliseconds), the data is not logged
-    
     self.logTimer = [NSTimer scheduledTimerWithTimeInterval:(float)self.updateInterval/1000.0f target:self selector:@selector(logValues:) userInfo:nil repeats:YES];
     
     self.countUpTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
@@ -43,14 +40,12 @@
 
 -(void)cancel:(BOOL)goBack
 {
-    //if logTimer is running, invalidate it and set it to null
     if(self.logTimer)
     {
         [self.logTimer invalidate];
         self.logTimer = nil;
     }
     
-    //if countUpTimer is running, invalidate it and set it to null
     if(self.countUpTimer)
     {
         [self.countUpTimer invalidate];
@@ -78,9 +73,6 @@
 
 
     BOOL testConnected = NO;
-    
-    //Check every peripheral (sensorTag). if it is not connected, connect & configure it and then start getting values.
-    // If it is alreayd connected, just configure it and start getting values
     for(CBPeripheral *peripheral in self.devices.peripherals)
     {
         if (![peripheral isConnected])
@@ -98,7 +90,6 @@
     
 }
 
-//De-configure all the sensors (so that it stops broadcasting values)
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -123,33 +114,40 @@
 {
     [self initGyroSensors];
     
-    //retreive update rate from Technical Configuration.
-    
     self.updateInterval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"updateRate"] intValue];  //(in milliseconds) minimum update interval for both gyro and accelero
     
-    
-    //Initialize all the values. Not that much necessary but still done as a pre-caution
-    
-    self.current_Values = [NSMutableDictionary dictionaryWithCapacity:13];
-    [self.current_Values setObject:@"" forKey:@"timestamp"];
-    [self.current_Values setObject:@"" forKey:@"S1_AX"];
-    [self.current_Values setObject:@"" forKey:@"S1_AY"];
-    [self.current_Values setObject:@"" forKey:@"S1_AZ"];
-    [self.current_Values setObject:@"" forKey:@"S1_GX"];
-    [self.current_Values setObject:@"" forKey:@"S1_GY"];
-    [self.current_Values setObject:@"" forKey:@"S1_GZ"];
-    [self.current_Values setObject:@"" forKey:@"S2_AX"];
-    [self.current_Values setObject:@"" forKey:@"S2_AY"];
-    [self.current_Values setObject:@"" forKey:@"S2_AZ"];
-    [self.current_Values setObject:@"" forKey:@"S2_GX"];
-    [self.current_Values setObject:@"" forKey:@"S2_GY"];
-    [self.current_Values setObject:@"" forKey:@"S2_GZ"];
+  //  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
+
+    self.current_Values = [NSMutableArray arrayWithCapacity:13];
+    [self.current_Values setValue:@"" forKey:@"timestamp"];
+    [self.current_Values setValue:@"" forKey:@"S1_AX"];
+    [self.current_Values setValue:@"" forKey:@"S1_AY"];
+    [self.current_Values setValue:@"" forKey:@"S1_AZ"];
+    [self.current_Values setValue:@"" forKey:@"S1_GX"];
+    [self.current_Values setValue:@"" forKey:@"S1_GY"];
+    [self.current_Values setValue:@"" forKey:@"S1_GZ"];
+    [self.current_Values setValue:@"" forKey:@"S2_AX"];
+    [self.current_Values setValue:@"" forKey:@"S2_AY"];
+    [self.current_Values setValue:@"" forKey:@"S2_AZ"];
+    [self.current_Values setValue:@"" forKey:@"S2_GX"];
+    [self.current_Values setValue:@"" forKey:@"S2_GY"];
+    [self.current_Values setValue:@"" forKey:@"S2_GZ"];
 
 }
 
+-(void)done
+{
+    //        MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+//    [mailComposer setSubject:@"Test Data"];
+//    
+//    [mailComposer setToRecipients:@[@"hiranasirkhan@gmail.com"]];
+//    [mailComposer setMessageBody:data isHTML:NO];
+//    
+//    [mailComposer setMailComposeDelegate:self];
+//    [self presentViewController:mailComposer animated:YES completion:nil];
+}
 
 #pragma mark - Sensor Configuration
-//Initialize all the gyro sensors
 -(void)initGyroSensors
 {
     self.gyroSensors = [NSMutableArray array];
@@ -203,8 +201,6 @@
 
 -(void) deconfigureSensorTag:(CBPeripheral*)peripheral
 {
-    //Check if sensor is enabled. If Yes, then configure it else dont.
-
     if ([self sensorEnabled:@"Accelerometer active"])
     {
         CBUUID *sUUID =  [CBUUID UUIDWithString:[self.devices.setupData valueForKey:@"Accelerometer service UUID"]];
@@ -224,6 +220,7 @@
         [BLEUtility setNotificationForCharacteristic:peripheral sCBUUID:sUUID cCBUUID:cUUID enable:NO];
     }
 }
+
 -(bool)sensorEnabled:(NSString *)Sensor
 {
     NSString *val = [self.devices.setupData valueForKey:Sensor];
@@ -253,7 +250,7 @@
 }
 
 #pragma mark - CBPeripheral Delegate
-//All these functions are discussed in StartTestViewController.m
+
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     if([service.UUID isEqual:[CBUUID UUIDWithString:[self.devices.setupData valueForKey:@"Gyroscope service UUID"]]])
@@ -279,10 +276,8 @@
     NSLog(@"didUpdateNotificationStateForCharacteristic %@, error = %@",characteristic.UUID,error);
 }
 
--(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
-    
-    //Check if the data is being broadcast by accelerometer sensor. If Yes, read its values and store it
+-(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    //NSLog(@"didUpdateValueForCharacteristic = %@",characteristic.UUID);
     
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:[self.devices.setupData valueForKey:@"Accelerometer data UUID"]]])
     {
@@ -292,12 +287,30 @@
         float y = [sensorKXTJ9 calcYValue:characteristic.value];
         float z = [sensorKXTJ9 calcZValue:characteristic.value];
 
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",x] forKey:[NSString stringWithFormat:@"S%d_AX",deviceIndex+1]];
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",y] forKey:[NSString stringWithFormat:@"S%d_AY",deviceIndex+1]];
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",z] forKey:[NSString stringWithFormat:@"S%d_AZ",deviceIndex+1]];
+        
+        int initial_Index;
+        if([self getDeviceIndex:peripheral] == 0)
+        {
+            accValueX.text = [NSString stringWithFormat:@"X : % 0.3fG",x];
+            accValueY.text = [NSString stringWithFormat:@"Y : % 0.3fG",y];
+            accValueZ.text = [NSString stringWithFormat:@"Z : % 0.3fG",z];
+            initial_Index = 1;
+        }
+        else
+        {
+            d2_accValueX.text = [NSString stringWithFormat:@"X : % 0.3fG",x];
+            d2_accValueY.text = [NSString stringWithFormat:@"Y : % 0.3fG",y];
+            d2_accValueZ.text = [NSString stringWithFormat:@"Z : % 0.3fG",z];
+
+            initial_Index = 7;
+        }
+        
+         [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",x] forKey:[NSString stringWithFormat:@"S%d_AX",deviceIndex+1] atIndex:initial_Index];
+        [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",y] forKey:[NSString stringWithFormat:@"S%d_AY",deviceIndex+1] atIndex:initial_Index+1];
+        [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",z] forKey:[NSString stringWithFormat:@"S%d_AZ",deviceIndex+1] atIndex:initial_Index+2];
+        
     }
     
-    //Check if the data is being broadcast by gyroscope sensor. If Yes, read its values and store it
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:[self.devices.setupData valueForKey:@"Gyroscope data UUID"]]])
     {
         int deviceIndex = [self getDeviceIndex:peripheral];
@@ -309,11 +322,29 @@
         float y = [gyroSensor calcYValue:characteristic.value];
         float z = [gyroSensor calcZValue:characteristic.value];
         
+        int initial_Index;
 
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",x] forKey:[NSString stringWithFormat:@"S%d_GX",deviceIndex+1]];
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",y] forKey:[NSString stringWithFormat:@"S%d_GY",deviceIndex+1]];
-        [self.current_Values setObject:[NSString stringWithFormat:@"%0.3f",z] forKey:[NSString stringWithFormat:@"S%d_GZ",deviceIndex+1]];
+        if(deviceIndex == 0)
+        {
+            gyroValueX.text = [NSString stringWithFormat:@"X : % 0.3f°/S",x];
+            gyroValueY.text = [NSString stringWithFormat:@"Y : % 0.3f°/S",y];
+            gyroValueZ.text = [NSString stringWithFormat:@"Z : % 0.3f°/S",z];
+            initial_Index = 4;
+        }
+        else
+        {
+            d2_gyroValueX.text = [NSString stringWithFormat:@"X : % 0.3f°/S",x];
+            d2_gyroValueY.text = [NSString stringWithFormat:@"Y : % 0.3f°/S",y];
+            d2_gyroValueZ.text = [NSString stringWithFormat:@"Z : % 0.3f°/S",z];
+            initial_Index = 10;
+        }
+        
+        [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",x] forKey:[NSString stringWithFormat:@"S%d_GX",deviceIndex+1] atIndex:initial_Index];
+        [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",y] forKey:[NSString stringWithFormat:@"S%d_GY",deviceIndex+1] atIndex:initial_Index+1];
+        [self.current_Values setValue:[NSString stringWithFormat:@"%0.3f",z] forKey:[NSString stringWithFormat:@"S%d_GZ",deviceIndex+1] atIndex:initial_Index+2];
 
+//        if([self.current_Values count]==16)
+//            [self logValues];
     }
 }
 
@@ -346,21 +377,15 @@
 {
     if([[[TestDetails sharedInstance] dataPoints] count] == 0)
     {
-        //sender is nil when time is up. So when time is up, don't save data, end test and go back to previous screen.
+
         if(!sender)
             [self cancel:YES];
         else
-        {
-            //sender is not nil when save is pressed. In that case, dont end test. Just show message "No Data To Save".
-            
             [[[UIAlertView alloc] initWithTitle:@"Balance4Good" message:@"No Data To Save" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
-        }
+
         return;
     }
-    // In case we have data points, first call endTest to store all data and create its JSON
-    // then deconfigure the peripheral
-    // and final store the file to the Saved_Data Folder
-    // finally show the Test Complete View Controller
+    
     NSString *data = [[TestDetails sharedInstance] endTest];
     
     for(CBPeripheral *peripheral in self.devices.peripherals)
@@ -388,15 +413,16 @@
 }
 
 
+//unsigned long fileSize = [data length];
+//[self uploadFileWithURL:fileURL fileSize:fileSize inBucket:[[NSUserDefaults standardUserDefaults] objectForKey:@"bucket_name"] asfileName:fileName];
+
 #pragma mark - Log Values
 -(void) logValues:(NSTimer*)timer
 {
-    NSMutableDictionary *vals = [NSMutableDictionary dictionaryWithDictionary:self.current_Values];
-
+    NSMutableArray *vals = [NSMutableArray arrayWithArray:self.current_Values];
     
     BOOL dataExists = [self dataExists:vals];
     
-    //If data does not exists & there are no data points already,don't log data.
     if([[[TestDetails sharedInstance] dataPoints] count] == 0 && !dataExists)
         return;
     
@@ -404,18 +430,26 @@
     if([vals count] == 0)
         return;
     
-    //add timestamp
-    [vals setObject:[[TestDetails sharedInstance] getFormattedTimestamp:YES] forKey:@"timestamp"];
-
-    //add the data point to the data points array
+//    [vals insertTimeStamp:[[TestDetails sharedInstance] getFormattedTimestamp:YES] atIndex:0];
+    
+    
     [[[TestDetails sharedInstance] dataPoints] addObject:vals];
     
-    //update the number of data points
     [lblDataPointsCount setText:[NSString stringWithFormat:@"%lu",(unsigned long)[[[TestDetails sharedInstance] dataPoints] count]]];
+}
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view
+{
+    return ![view isKindOfClass:[UIButton class]];
+}
+
+#pragma mark - MFMailComposerDelegate
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Convert To JSON
-//returns JSON in a readable format (pretty printed)
 -(NSString*) getPrettyPrintedJSONforObject:(id)obj
 {
     NSError *error;
@@ -432,28 +466,96 @@
     }
 }
 
+#pragma mark - AWS Upload
+-(void)uploadFileWithURL:(NSURL*)fileURL fileSize:(unsigned long)fileSize inBucket:(NSString*)bucket asfileName:(NSString*)fileName
+{
+    AWSS3TransferManager *transferManager = [AWSS3TransferManager defaultS3TransferManager];
+    AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
+    uploadRequest.bucket = bucket;
+    uploadRequest.key = fileName;
+    uploadRequest.body = fileURL;
+    
+    uploadRequest.contentLength = [NSNumber numberWithUnsignedLong:fileSize];
+    
+    [self showLoader];
+    
+    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task)
+     {
+         [self hideLoader];
+         if(task.error)
+         {
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:task.error.localizedDescription delegate:self cancelButtonTitle:@"Close" otherButtonTitles:@"Retry", nil];
+             alert.tag = ERROR_ALERT;
+             [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+         }
+         else
+         {
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"File Upload Successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             alert.tag = SUCCESS_ALERT;
+             [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+         }
+         
+         return nil;
+     }];
+    
+}
+
+-(void)showLoader
+{
+    loader = [[UIAlertView alloc] initWithTitle:@"" message:@"Please wait while file is being uploaded...." delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    [loader show];
+}
+
+-(void)hideLoader
+{
+    [loader dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+#pragma mark - UIAlertView Delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView tag]==SUCCESS_ALERT)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if([alertView tag] == ERROR_ALERT)
+    {
+        if(buttonIndex == 0 )
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self done];
+        }
+    }
+}
 
 #pragma mark - Helper Functions
--(BOOL)dataExists:(NSMutableDictionary*)dataDict
+-(BOOL)dataExists:(NSMutableArray*)array
 {
     BOOL result = NO;
-    for(NSString *key in dataDict.allKeys)
+    for(int i=0;i<[array count];i++)
     {
-        if(![self isEmpty:[dataDict objectForKey:key]])
+        if(![self isEmpty:[array objectAtIndex:i]])
         {
             result = YES;
         }
         else
         {
-            [dataDict removeObjectForKey:key];
+            [array removeObjectAtIndex:i];
+            i--;
         }
     }
+    
     return result;
 }
 
 -(BOOL)isEmpty:(NSString*)str
 {
-    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSUInteger loc = [str rangeOfString:@":"].location;
+    str = [[str substringFromIndex:loc+1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    str = [str stringByReplacingOccurrencesOfString:@"=" withString:@""];
     
     if([str length] == 0)
         return YES;
@@ -465,8 +567,6 @@
 {
     timeElapsed++;
 
-    //check if time elapsed is greatr than or equal to total walk time, then call save.
-    //Also update the time elapsed label
     if(timeElapsed >= [[NSUserDefaults standardUserDefaults] integerForKey:@"total_walk_time"])
     {
         [self save:nil];

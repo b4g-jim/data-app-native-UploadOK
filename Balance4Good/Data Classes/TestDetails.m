@@ -25,7 +25,9 @@
 
 -(void)startTestWithShoeType:(NSString *)shoeType FloorType:(NSString *)floorType Sensors:(NSString *)sensors
 {
-    self.testInfo = [NSMutableArray array];
+    //testInfo stores information about the tester
+    
+    self.testInfo = [NSMutableDictionary dictionary];
     self.dataPoints = [NSMutableArray array];
 
     NSDictionary *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"personalInfo"];
@@ -34,35 +36,46 @@
     NSString *tester_id = [data objectForKey:@"number"];
     self.test_id = [tester_id stringByAppendingString:test_date];
     int update_interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"updateRate"] intValue];
+
+    [self.testInfo setObject:test_date forKey:@"test_date"];
+    [self.testInfo setObject:tester_id forKey:@"tester_id"];
+    [self.testInfo setObject:self.test_id forKey:@"test_id"];
+    [self.testInfo setObject:[data objectForKey:@"name"] forKey:@"tester_name"];
+    [self.testInfo setObject:[data objectForKey:@"gender"] forKey:@"gender"];
+    [self.testInfo setObject:[data objectForKey:@"age"] forKey:@"age"];
+    [self.testInfo setObject:[data objectForKey:@"height"] forKey:@"height"];
+    [self.testInfo setObject:[data objectForKey:@"hipHeight"] forKey:@"hip_height"];
+    [self.testInfo setObject:[data objectForKey:@"weight"] forKey:@"weight"];
+    [self.testInfo setObject:shoeType forKey:@"shoe_type"];
+    [self.testInfo setObject:floorType forKey:@"floor_type"];
+    [self.testInfo setObject:sensors forKey:@"sensor_location"];
+    [self.testInfo setObject:@"1.0" forKey:@"sensor_sw"];
+
+    //If note exists, include it in the testInfo otherwise ignore it
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"note"])
+        [self.testInfo setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"note"] forKey:@"note"];
     
-    [self.testInfo setValue:test_date forKey:@"test_date"];
-    [self.testInfo setValue:tester_id forKey:@"tester_id"];
-    [self.testInfo setValue:self.test_id forKey:@"test_id"];
-    [self.testInfo setValue:[data objectForKey:@"name"] forKey:@"tester_name"];
-//    [self.testInfo setValue:@"Smith" forKey:@"tester_lastname"];
-    [self.testInfo setValue:[data objectForKey:@"gender"] forKey:@"gender"];
-    [self.testInfo setValue:@"30" forKey:@"age"];
-    [self.testInfo setValue:[data objectForKey:@"height"] forKey:@"height"];
-    [self.testInfo setValue:[data objectForKey:@"hipHeight"] forKey:@"hip_height"];
-    [self.testInfo setValue:[data objectForKey:@"weight"] forKey:@"weight"];
-    [self.testInfo setValue:shoeType forKey:@"shoe_type"];
-    [self.testInfo setValue:floorType forKey:@"floor_type"];
-    [self.testInfo setValue:sensors forKey:@"sensor_location"];
-    [self.testInfo setValue:@"1.0" forKey:@"sensor_sw"];
-    [self.testInfo setValue:[NSString stringWithFormat:@"%d",1000/update_interval] forKey:@"sensor_frequency"];
+    //setting update frequency which is 1/(time in second) but since we are storing time as millisecond
+    //so we have 1000/(time in seconds)
+    
+    [self.testInfo setObject:[NSString stringWithFormat:@"%d",1000/update_interval] forKey:@"sensor_frequency"];
 }
 
 -(NSString*)endTest
 {
+    //data points are added to testInfo
     NSMutableArray *allData = [NSMutableArray array];
-    [self.testInfo setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[self.dataPoints count]] forKey:@"number_data_points"];
+    [self.testInfo setObject:[NSString stringWithFormat:@"%lu",(unsigned long)[self.dataPoints count]] forKey:@"number_data_points"];
+    
+    //Data points is inclosed in dictionary so that we can get the data_points label
+    //both the data points dictionary and testinfo is added to the allData which is then converted to JSON
     
     NSDictionary *dataPointsDictInArray = [NSDictionary dictionaryWithObject:self.dataPoints forKey:@"data_points"];
     [allData addObject:self.testInfo];
     [allData addObject:dataPointsDictInArray];
 
-    NSString *jsonStr = [[self getPrettyPrintedJSONforObject:allData] stringByReplacingOccurrencesOfString:@"-" withString:@"\""];
-    return [self stripExtraQuotes:jsonStr];
+    NSString *jsonStr = [self getPrettyPrintedJSONforObject:allData];
+    return jsonStr;
 }
 
 -(NSString*) getPrettyPrintedJSONforObject:(id)obj
@@ -106,11 +119,18 @@
     }
 }
 
--(NSString*)stripExtraQuotes:(NSString*)string
+//To get the path for the Saved_Data folder which is used to store the saved JSON files on the phone
+-(NSString*)getDataFolderPath
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"\"" withString:@"\""];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Saved_Data"];
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    return dataPath;
 }
-
 
 
 @end

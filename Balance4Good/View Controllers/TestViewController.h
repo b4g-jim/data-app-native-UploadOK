@@ -38,10 +38,12 @@
 @property (strong,nonatomic) NSTimer *logTimer;
 @property (strong,nonatomic) NSTimer *countUpTimer;
 
-@property (strong,nonatomic) NSMutableArray *current_Values;
+//@property (strong,nonatomic) NSMutableArray *current_Values;
+@property (strong,nonatomic) NSMutableDictionary *current_Values;
 @property float logInterval;
 @property int updateInterval;
 
 - (IBAction)save:(UIButton *)sender;
+- (IBAction)cancelTest:(UIButton *)sender;
 
 @end

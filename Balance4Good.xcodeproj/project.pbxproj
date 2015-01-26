@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4705C2DE1A7691550088C0F9 /* dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2DC1A7691550088C0F9 /* dropdown_arrow.png */; };
+		4705C2DF1A7691550088C0F9 /* logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4705C2DD1A7691550088C0F9 /* logo_small.png */; };
+		4705C2E41A76D06A0088C0F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4705C2E31A76D06A0088C0F9 /* main.m */; };
+		4752A92D1A685AF2008B4F92 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A92C1A685AF2008B4F92 /* CustomScrollView.m */; };
+		4752A9301A686A33008B4F92 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A92F1A686A33008B4F92 /* InstructionsViewController.m */; };
+		4752A9331A686C34008B4F92 /* TestCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A9321A686C34008B4F92 /* TestCompleteViewController.m */; };
+		4752A9371A6870FC008B4F92 /* UploadDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A9361A6870FC008B4F92 /* UploadDataViewController.m */; };
+		4752A93A1A68710B008B4F92 /* NoDataToUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A9391A68710B008B4F92 /* NoDataToUploadViewController.m */; };
+		4752A93D1A687117008B4F92 /* UploadDataSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A93C1A687117008B4F92 /* UploadDataSuccessViewController.m */; };
+		4752A9431A687135008B4F92 /* UploadDataFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4752A9421A687135008B4F92 /* UploadDataFailureViewController.m */; };
 		4766CB011A4B635A009FBE84 /* TestDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB001A4B635A009FBE84 /* TestDetails.m */; };
 		4766CB151A4B63D6009FBE84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB041A4B63D6009FBE84 /* AppDelegate.m */; };
-		4766CB161A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB071A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.m */; };
 		4766CB171A4B63D6009FBE84 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB0A1A4B63D6009FBE84 /* DevicesViewController.m */; };
 		4766CB181A4B63D6009FBE84 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB0C1A4B63D6009FBE84 /* PersonalInfoViewController.m */; };
 		4766CB191A4B63D6009FBE84 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB0E1A4B63D6009FBE84 /* SettingsViewController.m */; };
 		4766CB1A1A4B63D6009FBE84 /* StartTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB101A4B63D6009FBE84 /* StartTestViewController.m */; };
 		4766CB1B1A4B63D6009FBE84 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB121A4B63D6009FBE84 /* TestViewController.m */; };
 		4766CB1C1A4B63D6009FBE84 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766CB141A4B63D6009FBE84 /* WelcomeViewController.m */; };
+		47E0294A1A68796500BD8312 /* selectorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E029481A68796500BD8312 /* selectorPickerViewController.m */; };
+		47E0294B1A68796500BD8312 /* selectorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E029491A68796500BD8312 /* selectorPickerViewController.xib */; };
+		47E0294E1A687B5B00BD8312 /* TypeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E0294D1A687B5B00BD8312 /* TypeClass.m */; };
 		507E0C961A1F3E09005AB88D /* AWSiOSSDKv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E0C951A1F3E09005AB88D /* AWSiOSSDKv2.framework */; };
 		507E0C9E1A1F3E67005AB88D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E0C971A1F3E67005AB88D /* Bolts.framework */; };
 		507E0C9F1A1F3E67005AB88D /* GZIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E0C981A1F3E67005AB88D /* GZIP.framework */; };
@@ -43,7 +55,6 @@
 		507E0CCD1A1F427F005AB88D /* AWSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E0CCC1A1F427F005AB88D /* AWSHelper.m */; };
 		507E0CD01A1F502D005AB88D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E0CCF1A1F502D005AB88D /* Constants.m */; };
 		507E0CD21A1F5AFE005AB88D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E0CD11A1F5AFE005AB88D /* libz.dylib */; };
-		509620811A1B71CC006E24BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509620801A1B71CC006E24BE /* main.m */; };
 		5096208D1A1B71CD006E24BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5096208B1A1B71CD006E24BE /* Main.storyboard */; };
 		5096208F1A1B71CD006E24BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5096208E1A1B71CD006E24BE /* Images.xcassets */; };
 		5096209E1A1B71CD006E24BE /* Balance4GoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5096209D1A1B71CD006E24BE /* Balance4GoodTests.m */; };
@@ -63,12 +74,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4705C2DC1A7691550088C0F9 /* dropdown_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown_arrow.png; sourceTree = "<group>"; };
+		4705C2DD1A7691550088C0F9 /* logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_small.png; sourceTree = "<group>"; };
+		4705C2E31A76D06A0088C0F9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4752A92B1A685AF2008B4F92 /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
+		4752A92C1A685AF2008B4F92 /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
+		4752A92E1A686A33008B4F92 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
+		4752A92F1A686A33008B4F92 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
+		4752A9311A686C34008B4F92 /* TestCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCompleteViewController.h; sourceTree = "<group>"; };
+		4752A9321A686C34008B4F92 /* TestCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCompleteViewController.m; sourceTree = "<group>"; };
+		4752A9351A6870FC008B4F92 /* UploadDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadDataViewController.h; sourceTree = "<group>"; };
+		4752A9361A6870FC008B4F92 /* UploadDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadDataViewController.m; sourceTree = "<group>"; };
+		4752A9381A68710B008B4F92 /* NoDataToUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataToUploadViewController.h; sourceTree = "<group>"; };
+		4752A9391A68710B008B4F92 /* NoDataToUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataToUploadViewController.m; sourceTree = "<group>"; };
+		4752A93B1A687117008B4F92 /* UploadDataSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadDataSuccessViewController.h; sourceTree = "<group>"; };
+		4752A93C1A687117008B4F92 /* UploadDataSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadDataSuccessViewController.m; sourceTree = "<group>"; };
+		4752A9411A687135008B4F92 /* UploadDataFailureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadDataFailureViewController.h; sourceTree = "<group>"; };
+		4752A9421A687135008B4F92 /* UploadDataFailureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadDataFailureViewController.m; sourceTree = "<group>"; };
 		4766CAFF1A4B635A009FBE84 /* TestDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDetails.h; sourceTree = "<group>"; };
 		4766CB001A4B635A009FBE84 /* TestDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDetails.m; sourceTree = "<group>"; };
 		4766CB031A4B63D6009FBE84 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4766CB041A4B63D6009FBE84 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4766CB061A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+KeyValuePairs.h"; sourceTree = "<group>"; };
-		4766CB071A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+KeyValuePairs.m"; sourceTree = "<group>"; };
 		4766CB091A4B63D6009FBE84 /* DevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesViewController.h; sourceTree = "<group>"; };
 		4766CB0A1A4B63D6009FBE84 /* DevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesViewController.m; sourceTree = "<group>"; };
 		4766CB0B1A4B63D6009FBE84 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
@@ -81,6 +107,11 @@
 		4766CB121A4B63D6009FBE84 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4766CB131A4B63D6009FBE84 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		4766CB141A4B63D6009FBE84 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		47E029471A68796500BD8312 /* selectorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectorPickerViewController.h; sourceTree = "<group>"; };
+		47E029481A68796500BD8312 /* selectorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectorPickerViewController.m; sourceTree = "<group>"; };
+		47E029491A68796500BD8312 /* selectorPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectorPickerViewController.xib; sourceTree = "<group>"; };
+		47E0294C1A687B5B00BD8312 /* TypeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeClass.h; sourceTree = "<group>"; };
+		47E0294D1A687B5B00BD8312 /* TypeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeClass.m; sourceTree = "<group>"; };
 		507E0C951A1F3E09005AB88D /* AWSiOSSDKv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDKv2.framework; sourceTree = "<group>"; };
 		507E0C971A1F3E67005AB88D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		507E0C981A1F3E67005AB88D /* GZIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GZIP.framework; sourceTree = "<group>"; };
@@ -154,11 +185,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4705C2DB1A7691550088C0F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4705C2DC1A7691550088C0F9 /* dropdown_arrow.png */,
+				4705C2DD1A7691550088C0F9 /* logo_small.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4766CAFE1A4B635A009FBE84 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
 				4766CAFF1A4B635A009FBE84 /* TestDetails.h */,
 				4766CB001A4B635A009FBE84 /* TestDetails.m */,
+				47E0294C1A687B5B00BD8312 /* TypeClass.h */,
+				47E0294D1A687B5B00BD8312 /* TypeClass.m */,
 			);
 			path = "Data Classes";
 			sourceTree = "<group>";
@@ -170,15 +212,6 @@
 				4766CB041A4B63D6009FBE84 /* AppDelegate.m */,
 			);
 			path = "App Delegate";
-			sourceTree = "<group>";
-		};
-		4766CB051A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs */ = {
-			isa = PBXGroup;
-			children = (
-				4766CB061A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.h */,
-				4766CB071A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.m */,
-			);
-			path = "NSMutableArray+KeyValuePairs";
 			sourceTree = "<group>";
 		};
 		4766CB081A4B63D6009FBE84 /* View Controllers */ = {
@@ -196,8 +229,30 @@
 				4766CB121A4B63D6009FBE84 /* TestViewController.m */,
 				4766CB131A4B63D6009FBE84 /* WelcomeViewController.h */,
 				4766CB141A4B63D6009FBE84 /* WelcomeViewController.m */,
+				4752A92E1A686A33008B4F92 /* InstructionsViewController.h */,
+				4752A92F1A686A33008B4F92 /* InstructionsViewController.m */,
+				4752A9311A686C34008B4F92 /* TestCompleteViewController.h */,
+				4752A9321A686C34008B4F92 /* TestCompleteViewController.m */,
+				4752A9351A6870FC008B4F92 /* UploadDataViewController.h */,
+				4752A9361A6870FC008B4F92 /* UploadDataViewController.m */,
+				4752A9381A68710B008B4F92 /* NoDataToUploadViewController.h */,
+				4752A9391A68710B008B4F92 /* NoDataToUploadViewController.m */,
+				4752A93B1A687117008B4F92 /* UploadDataSuccessViewController.h */,
+				4752A93C1A687117008B4F92 /* UploadDataSuccessViewController.m */,
+				4752A9411A687135008B4F92 /* UploadDataFailureViewController.h */,
+				4752A9421A687135008B4F92 /* UploadDataFailureViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		47E029461A68796500BD8312 /* Picker View */ = {
+			isa = PBXGroup;
+			children = (
+				47E029471A68796500BD8312 /* selectorPickerViewController.h */,
+				47E029481A68796500BD8312 /* selectorPickerViewController.m */,
+				47E029491A68796500BD8312 /* selectorPickerViewController.xib */,
+			);
+			path = "Picker View";
 			sourceTree = "<group>";
 		};
 		507E0C941A1F3DF4005AB88D /* Frameworks */ = {
@@ -273,16 +328,20 @@
 		5096207D1A1B71CC006E24BE /* Balance4Good */ = {
 			isa = PBXGroup;
 			children = (
+				4705C2E31A76D06A0088C0F9 /* main.m */,
+				4705C2DB1A7691550088C0F9 /* Resources */,
+				47E029461A68796500BD8312 /* Picker View */,
 				4766CB021A4B63D6009FBE84 /* App Delegate */,
 				507E0CA51A1F3F23005AB88D /* AWS */,
 				4766CAFE1A4B635A009FBE84 /* Data Classes */,
 				4766CB081A4B63D6009FBE84 /* View Controllers */,
-				4766CB051A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs */,
 				5096208B1A1B71CD006E24BE /* Main.storyboard */,
 				5096208E1A1B71CD006E24BE /* Images.xcassets */,
 				5096207E1A1B71CC006E24BE /* Supporting Files */,
 				509620AD1A1B7ACE006E24BE /* SensorTag_Files */,
 				507E0C941A1F3DF4005AB88D /* Frameworks */,
+				4752A92B1A685AF2008B4F92 /* CustomScrollView.h */,
+				4752A92C1A685AF2008B4F92 /* CustomScrollView.m */,
 			);
 			path = Balance4Good;
 			sourceTree = "<group>";
@@ -410,10 +469,13 @@
 			files = (
 				507E0CC21A1F3F2E005AB88D /* sns-2010-03-31.json in Resources */,
 				507E0CB71A1F3F2E005AB88D /* cib-2014-06-30.json in Resources */,
+				4705C2DF1A7691550088C0F9 /* logo_small.png in Resources */,
 				507E0CB91A1F3F2E005AB88D /* dynamodb-2012-08-10.json in Resources */,
 				507E0CBE1A1F3F2E005AB88D /* mobileanalytics-2014-06-30.json in Resources */,
 				507E0CBF1A1F3F2E005AB88D /* monitoring-2010-08-01.json in Resources */,
 				507E0CC31A1F3F2E005AB88D /* sqs-2012-11-05.json in Resources */,
+				47E0294B1A68796500BD8312 /* selectorPickerViewController.xib in Resources */,
+				4705C2DE1A7691550088C0F9 /* dropdown_arrow.png in Resources */,
 				507E0CC41A1F3F2E005AB88D /* sts-2011-06-15.json in Resources */,
 				507E0CBA1A1F3F2E005AB88D /* ec2-2014-06-15.json in Resources */,
 				507E0CBB1A1F3F2E005AB88D /* elasticloadbalancing-2012-06-01.json in Resources */,
@@ -448,16 +510,24 @@
 				4766CB171A4B63D6009FBE84 /* DevicesViewController.m in Sources */,
 				4766CB151A4B63D6009FBE84 /* AppDelegate.m in Sources */,
 				509620B01A1B7ACE006E24BE /* BLEDevice.m in Sources */,
+				4752A93A1A68710B008B4F92 /* NoDataToUploadViewController.m in Sources */,
+				47E0294A1A68796500BD8312 /* selectorPickerViewController.m in Sources */,
 				507E0CCA1A1F420E005AB88D /* Reachability.m in Sources */,
 				4766CB181A4B63D6009FBE84 /* PersonalInfoViewController.m in Sources */,
-				509620811A1B71CC006E24BE /* main.m in Sources */,
+				4752A9331A686C34008B4F92 /* TestCompleteViewController.m in Sources */,
 				4766CB1B1A4B63D6009FBE84 /* TestViewController.m in Sources */,
+				4752A92D1A685AF2008B4F92 /* CustomScrollView.m in Sources */,
 				509620B31A1B7D74006E24BE /* Sensors.m in Sources */,
+				4705C2E41A76D06A0088C0F9 /* main.m in Sources */,
 				4766CB011A4B635A009FBE84 /* TestDetails.m in Sources */,
+				47E0294E1A687B5B00BD8312 /* TypeClass.m in Sources */,
 				507E0CD01A1F502D005AB88D /* Constants.m in Sources */,
+				4752A9431A687135008B4F92 /* UploadDataFailureViewController.m in Sources */,
 				4766CB1C1A4B63D6009FBE84 /* WelcomeViewController.m in Sources */,
-				4766CB161A4B63D6009FBE84 /* NSMutableArray+KeyValuePairs.m in Sources */,
 				4766CB191A4B63D6009FBE84 /* SettingsViewController.m in Sources */,
+				4752A9301A686A33008B4F92 /* InstructionsViewController.m in Sources */,
+				4752A9371A6870FC008B4F92 /* UploadDataViewController.m in Sources */,
+				4752A93D1A687117008B4F92 /* UploadDataSuccessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +646,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alf Temme (23BJV3ZZAQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Balance4Good/Frameworks",
@@ -585,6 +656,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -593,7 +665,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Alf Temme (C3J68QACSJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Balance4Good/Frameworks",
@@ -602,6 +674,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

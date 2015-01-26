@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WelcomeViewController : UIViewController
+- (IBAction)uploadData:(UIButton *)sender;
 
 @end

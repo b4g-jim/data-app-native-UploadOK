@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Hira Daud. All rights reserved.
 //
 
+// Class For Storing Test Data
+
 #import <Foundation/Foundation.h>
-#import "NSMutableArray+KeyValuePairs.h"
+
 @interface TestDetails : NSObject
 
-@property (strong,nonatomic) NSMutableArray *testInfo;
+@property (strong,nonatomic) NSMutableDictionary *testInfo;
 @property (strong,nonatomic) NSMutableArray *dataPoints;
 @property (strong,nonatomic) NSString *test_id;
 
@@ -20,4 +22,5 @@
 -(NSString*)endTest;
 -(NSString*)getFormattedTimestamp:(BOOL)getMilliseconds;
 
+-(NSString*)getDataFolderPath;
 @end

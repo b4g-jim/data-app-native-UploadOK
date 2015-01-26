@@ -12,19 +12,19 @@
 
 -(void)setValue:(NSString*)value forKey:(NSString*)key
 {
-    NSString *val = [NSString stringWithFormat:@"%@- : -%@",key,value];
+    NSString *val = [NSString stringWithFormat:@"%@= : =%@",key,value];
     [self addObject: val];
 }
 
 -(void)setValue:(NSString *)value forKey:(NSString *)key atIndex:(int)index
 {
-    NSString *val = [NSString stringWithFormat:@"%@- : -%@",key,value];
+    NSString *val = [NSString stringWithFormat:@"%@= : =%@",key,value];
     [self replaceObjectAtIndex:index withObject:val];
 }
 
 -(void)insertTimeStamp:(NSString *)value atIndex:(int)index
 {
-    NSString *val = [NSString stringWithFormat:@"timestamp- : -%@",value];
+    NSString *val = [NSString stringWithFormat:@"timestamp= : =%@",value];
 
     [self insertObject:val atIndex:index];
 }
