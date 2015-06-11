@@ -23,6 +23,7 @@
     
 }
 
+//Function to store the test related data such as shoe type, floor type etc and initializes the dataPoints array (the array that will hold the accelerometer and gyrometer sensor values along with timestamp).
 -(void)startTestWithShoeType:(NSString *)shoeType FloorType:(NSString *)floorType Sensors:(NSString *)sensors
 {
     //testInfo stores information about the tester
@@ -61,13 +62,14 @@
     [self.testInfo setObject:[NSString stringWithFormat:@"%d",1000/update_interval] forKey:@"sensor_frequency"];
 }
 
+//Function called when test is ended. Count of data point is added to the testInfo and the data points array is stored inside test Info. Converts the allData (testInfo, data points etc.) to JSON String and returns that string
 -(NSString*)endTest
 {
     //data points are added to testInfo
     NSMutableArray *allData = [NSMutableArray array];
     [self.testInfo setObject:[NSString stringWithFormat:@"%lu",(unsigned long)[self.dataPoints count]] forKey:@"number_data_points"];
     
-    //Data points is inclosed in dictionary so that we can get the data_points label
+    //Data points is enclosed in dictionary so that we can get the data_points label
     //both the data points dictionary and testinfo is added to the allData which is then converted to JSON
     
     NSDictionary *dataPointsDictInArray = [NSDictionary dictionaryWithObject:self.dataPoints forKey:@"data_points"];
@@ -78,6 +80,7 @@
     return jsonStr;
 }
 
+//Used for converting object to JSON (Pretty Printed JSON)
 -(NSString*) getPrettyPrintedJSONforObject:(id)obj
 {
     NSError *error;

@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Hira Daud. All rights reserved.
 //
 
+//Not used in the project
+
+
 #import <UIKit/UIKit.h>
 
 @interface CustomScrollView : UIScrollView
